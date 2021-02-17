@@ -1,5 +1,5 @@
 {
-  "name": "bar-app-goiss",
+  "name": "barapp-github-linked",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -26,5 +26,7 @@
     "twin": {
       "preset": "styled-components"
     }
-  }
+  },
+  "keywords": [],
+  "description": ""
 }
