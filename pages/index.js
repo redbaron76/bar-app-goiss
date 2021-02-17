@@ -5,7 +5,7 @@ import "twin.macro";
 const HomePage = () => {
   const [loginState, setLoginState] = useState({
     login: "",
-    password: "",
+    password: ""
   });
 
   const formSubmit = (e) => {
@@ -15,12 +15,12 @@ const HomePage = () => {
 
   return (
     <div tw="flex flex-col justify-center items-center flex-grow bg-gray-200 pb-8">
-      <h1 tw="font-bold text-3xl py-4">Benvenuto nel nostro Bar</h1>
-      <p tw="">
+      <h1 tw="font-bold text-xl py-4">Benvenuto nel nostro Bar</h1>
+      <p tw="px-8 text-center">
         Esegui il login con il tuo account scolastico per ordinare i nostri
         prodotti.
       </p>
-      <div tw="bg-white w-2/4 p-8 mt-8 rounded-xl shadow">
+      <div tw="bg-white p-8 m-8 rounded-xl shadow md:(w-3/4) lg:(w-1/3)">
         <form onSubmit={formSubmit}>
           <InputField
             label="Indirizzo e-mail"
