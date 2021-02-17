@@ -1,7 +1,16 @@
-import '../styles/globals.css'
+import Layout from "../components/Layout";
+import GlobalStyles from "../components/GlobalStyles";
+// import "../styles/global.css";
 
-function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />
-}
+const MyApp = ({ Component, pageProps }) => {
+  return (
+    <>
+      <GlobalStyles />
+      <Layout name="BarApp">
+        <Component {...pageProps} />
+      </Layout>
+    </>
+  );
+};
 
-export default MyApp
+export default MyApp;

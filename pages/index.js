@@ -1,65 +1,60 @@
-import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import React, { useState } from "react";
+import InputField from "../components/InputField";
+import "twin.macro";
 
-export default function Home() {
+const HomePage = () => {
+  const [loginState, setLoginState] = useState({
+    login: "",
+    password: "",
+  });
+
+  const formSubmit = (e) => {
+    e.preventDefault();
+    console.log("loginState", loginState);
+  };
+
   return (
-    <div className={styles.container}>
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+    <div tw="flex flex-col justify-center items-center flex-grow bg-gray-200 pb-8">
+      <h1 tw="font-bold text-3xl py-4">Benvenuto nel nostro Bar</h1>
+      <p tw="">
+        Esegui il login con il tuo account scolastico per ordinare i nostri
+        prodotti.
+      </p>
+      <div tw="bg-white w-2/4 p-8 mt-8 rounded-xl shadow">
+        <form onSubmit={formSubmit}>
+          <InputField
+            label="Indirizzo e-mail"
+            name="email"
+            type="text"
+            placeholder="nome.cognome@goiss.it"
+            value={loginState.login}
+            onChange={(e) => {
+              // console.log("value", e.target.value);
+              loginState.login = e.target.value;
+              setLoginState({ ...loginState });
+            }}
+          />
 
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
-
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
-      </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
-        </a>
-      </footer>
+          <InputField
+            label="Password"
+            name="password"
+            type="password"
+            placeholder="8-digits password"
+            value={loginState.password}
+            info="minimo 8 caratteri alfanumerici"
+            onChange={(e) => {
+              // console.log("value", e.target.value);
+              loginState.password = e.target.value;
+              setLoginState({ ...loginState });
+            }}
+          />
+          <button tw="mt-4 py-4 px-6 bg-blue-400 text-white font-semibold w-full rounded shadow">
+            Login
+          </button>
+        </form>
+      </div>
     </div>
-  )
-}
+  );
+};
+
+export default HomePage;
