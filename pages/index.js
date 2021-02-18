@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import InputField from "../components/InputField";
+import Button from "../components/Button";
+import { useRouter } from "next/router";
 import "twin.macro";
 
 const HomePage = () => {
+  const router = useRouter();
   const [loginState, setLoginState] = useState({
     login: "",
-    password: "",
+    password: ""
   });
 
   const formSubmit = (e) => {
@@ -15,12 +18,16 @@ const HomePage = () => {
 
   return (
     <div tw="flex flex-col justify-center items-center flex-grow bg-gray-200 pb-8">
-      <h1 tw="font-bold text-3xl py-4">Benvenuto nel nostro Bar</h1>
-      <p tw="">
-        Esegui il login con il tuo account scolastico per ordinare i nostri
-        prodotti.
-      </p>
-      <div tw="bg-white w-2/4 p-8 mt-8 rounded-xl shadow">
+      <div tw="mx-8">
+        <h1 tw="font-bold text-2xl text-center py-4 lg:(text-4xl)">
+          Benvenuto nel nostro Bar
+        </h1>
+        <p tw="text-center lg:(text-xl)">
+          Esegui il login con il tuo account scolastico per ordinare i nostri
+          prodotti.
+        </p>
+      </div>
+      <div tw="bg-white p-8 m-8 rounded-xl shadow">
         <form onSubmit={formSubmit}>
           <InputField
             label="Indirizzo e-mail"
@@ -48,11 +55,21 @@ const HomePage = () => {
               setLoginState({ ...loginState });
             }}
           />
-          <button tw="mt-4 py-4 px-6 bg-blue-400 text-white font-semibold w-full rounded shadow">
+
+          <Button full rounded primary tw="mt-4">
             Login
-          </button>
+          </Button>
         </form>
       </div>
+      <Button
+        full
+        secondary
+        onClick={() => {
+          router.push("/products");
+        }}
+      >
+        LEGGI IL MENU'
+      </Button>
     </div>
   );
 };
