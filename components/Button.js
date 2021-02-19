@@ -15,6 +15,8 @@ const StButton = styled.button((props) => [
     font-semibold
     shadow
   `,
+  props.mono && tw`font-mono`,
+  props.small && tw`py-2 px-4`,
   props.full && tw`w-full`,
   props.rounded && tw`rounded`,
   props.primary && tw`bg-blue-400 text-white`,
