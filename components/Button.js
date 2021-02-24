@@ -20,7 +20,8 @@ const StButton = styled.button((props) => [
   props.full && tw`w-full`,
   props.rounded && tw`rounded`,
   props.primary && tw`bg-blue-400 text-white`,
-  props.secondary && tw`bg-gray-300 text-gray-500`
+  props.secondary && tw`bg-gray-300 text-gray-500`,
+  props.danger && tw`bg-red-500 text-white`
 ]);
 
 const Button = (props) => <StButton {...props}>{props.children}</StButton>;

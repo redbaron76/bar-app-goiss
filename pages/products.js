@@ -1,10 +1,13 @@
 import React from "react";
 import Button from "../components/Button";
+import useCart from "../store/cart";
 import "twin.macro";
 
 import { products } from "../mock/products";
 
 const Products = () => {
+  const addToCart = useCart((store) => store.addToCart);
+
   return (
     <div tw="flex flex-col justify-start flex-grow bg-gray-200 px-4">
       <div>
@@ -15,12 +18,18 @@ const Products = () => {
           Scegli i prodotti che vuoi acquistare e mettili nel carrello.
         </p>
       </div>
-      <div tw="mt-4">
+      <div tw="mt-4 pb-4">
         {products.map((product, i) => (
           <div key={"prod_" + i} tw="mt-2">
             <div tw="bg-white rounded-lg flex flex-row h-14 px-4 justify-between items-center">
               <div tw="font-bold text-lg">{product.name}</div>
-              <Button primary small rounded mono>
+              <Button
+                primary
+                small
+                rounded
+                mono
+                onClick={() => addToCart(product)}
+              >
                 <div tw="flex flex-row justify-between items-center">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
