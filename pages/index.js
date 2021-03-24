@@ -2,10 +2,12 @@ import React, { useState } from "react";
 import InputField from "../components/InputField";
 import Button from "../components/Button";
 import { useRouter } from "next/router";
+import useUser from "../store/user";
 import "twin.macro";
 
 const HomePage = () => {
   const router = useRouter();
+  const [user, loginUser] = useUser((store) => [store.user, store.loginUser]);
   const [loginState, setLoginState] = useState({
     login: "",
     password: ""
@@ -14,7 +16,12 @@ const HomePage = () => {
   const formSubmit = (e) => {
     e.preventDefault();
     console.log("loginState", loginState);
+    loginUser(loginState);
   };
+
+  if (user) {
+    router.push("/products");
+  }
 
   return (
     <div tw="flex flex-col justify-center items-center flex-grow bg-gray-200 pb-8">
@@ -27,7 +34,7 @@ const HomePage = () => {
           prodotti.
         </p>
       </div>
-      <div tw="bg-white p-8 m-8 rounded-xl shadow">
+      <div tw="bg-white p-8 m-8 rounded-xl shadow hidden">
         <form onSubmit={formSubmit}>
           <InputField
             label="Indirizzo e-mail"

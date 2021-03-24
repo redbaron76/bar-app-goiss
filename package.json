@@ -1,5 +1,5 @@
 {
-  "name": "lezione-24022021",
+  "name": "lezione-26022021",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "add": "^2.0.6",
+    "mongoose": "5.11.18",
     "next": "10.0.7",
     "react": "17.0.1",
     "react-dom": "17.0.1",

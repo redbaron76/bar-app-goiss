@@ -2,12 +2,33 @@ import React from "react";
 import Button from "../components/Button";
 import "twin.macro";
 import useCart from "../store/cart";
+import useUser from "../store/user";
 
 const Cart = () => {
+  const user = useUser((store) => store.user);
   const [items, removeFromCart] = useCart((store) => [
     store.items,
     store.removeFromCart
   ]);
+
+  const sendOrder = async () => {
+    const data = {
+      userId: String(user.id),
+      items
+    };
+
+    const response = await fetch("/api/orders/create", {
+      method: "POST", // *GET, POST, PUT, DELETE, etc.
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(data) // body data type must match "Content-Type" header
+    });
+
+    const resp = response.json(); // parses JSON response into native JavaScript objects
+
+    console.log("resp", resp);
+  };
 
   return (
     <div tw="flex flex-col justify-start flex-grow bg-gray-200 px-4">
@@ -50,6 +71,11 @@ const Cart = () => {
             </div>
           </div>
         ))}
+      </div>
+      <div>
+        <Button full primary rounded onClick={sendOrder}>
+          INVIA ORDINE
+        </Button>
       </div>
     </div>
   );
